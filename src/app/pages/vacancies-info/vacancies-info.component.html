@@ -1,0 +1,253 @@
+<section class="page__vacancie vacancie">
+  <div class="vacancie__container">
+    <div class="banner-align">
+          <div
+            class="banner-bg"
+            *ngIf="vacancie"
+            [ngStyle]="{
+              'background-image': 'url(' + vacancie.imagePath + ')'
+            }"
+          >
+            <div class="text-center banner-content">
+              <div class="name_vacanices" *ngIf="vacancie">{{vacancie.name}}</div>
+              <div class="banner-info">
+                <div class="text">
+                  <p>Місто</p>
+                  <p>Львів</p>
+                </div>
+                <div class="text">
+                  <p>Місце праці</p>
+                  <p>ресторан NOA</p>
+                </div>
+                <div class="text">
+                  <p>Зайнятість</p>
+                  <p>гнучкий графік</p>
+                </div>
+              </div>
+            </div>
+         
+            <ul class="breadcrumbs" *ngIf="vacancie">
+              <a [routerLink]="['']" routerLinkActive="rout-active">
+                <li>Головна</li>
+              </a>
+              <a [routerLink]="['/vacancies']" routerLinkActive="rout-active">
+                <li> Вакансії</li>
+              </a>
+              <li>{{ vacancie.name }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vacancie-banner__content">
+          <div class="vacancie-banner__name-vacanices title" *ngIf="vacancie">{{vacancie.name}}</div>
+            <div class="vacancie-banner__text">
+              <div class="text2">
+                <p>Місто</p>
+                <p>Місце праці</p>
+                <p>Зайнятість</p>
+              </div>
+              <div class="text2">
+                <p>Львів</p> 
+                <p>ресторан NOA</p>
+                <p>гнучкий графік</p>
+              </div>
+          </div>
+        </div>
+
+        <div class="vacancie__info vacancie-text">
+          <div class="vacancie-text" *ngIf="vacancie">
+            <div class="vacancie-text__descrip">
+              <p class="sample-text" [innerHTML]="vacancie.description"></p>
+            </div>
+            <div class="vacancie-text__descrip" *ngIf="vacancie.title === 'barmen'|| vacancie.title === 'kuhar-ramen-vok' ">
+              <p class="sample-text">
+                Впевнені, що ти точно легко справишся із:
+              </p>
+                <ul class="vacancie__list" *ngIf="vacancie.title === 'barmen'">
+                  <li>приготуванням кави за професійним кавовим апаратом</li>
+                  <li>приготування коктейлів/сезонних напоїв</li>
+                  <li>дотриманням санітарних норм в роботі</li>
+                </ul>
+                <ul class="vacancie__list" *ngIf="vacancie.title === 'kuhar-ramen-vok'">
+                  <li>приготування всіх необхідних заготовок для раменів – ми все покажемо</li>
+                  <li>приготуванням фінальної версії готової страви</li>
+                  <li>дотриманням санітарних норм в роботі</li>
+                </ul>
+            </div>
+            <div class="vacancie-text__descrip">
+              <p class="sample-text">Тому ми гарантуємо:</p>
+              <ul class="vacancie__list">
+                  <li>позмінний графік — 2/2 або 3/3</li>
+                  <li>зрозумілу систему оплати праці 2 рази на місяць</li>
+                  <li>знижка -40% на меню закладу</li>
+                  <li>таксі за рахунок компанії</li>
+                  <li> винагорода до 1500 грн за кожного друга, якого привів до нас </li>
+                  <li>компенсація вартості медогляду</li>
+                  <li>обіди за рахунок компанії</li>
+                  <li>можливість стати менеджером або шефом</li>
+              </ul>
+              <p class="sample-text">Окрім цього:</p>
+              <ul class="vacancie__list">
+                  <li>ми навчаємо тебе та платимо за стажування</li>
+                  <li> за перший рік твоя зарплата зросте на 20% (через 6 міс + 10%, і ще
+                     через 6 міс + 10%)
+                  </li>
+              </ul>
+            </div>
+            <div class="vacancie-text__descrip" *ngIf="vacancie.title === 'sushyst' || vacancie.title === 'kuhar-ramen-vok-copy'">
+              <p class="sample-text">Впевнені, що ти точно легко справишся із:</p>
+              <ul class="vacancie__list" *ngIf="vacancie.title === 'sushyst'">
+                <li>
+                  приготування всіх необхідних заготовок для суші – ми все
+                  покажемо
+                </li>
+                <li>приготуванням суші</li>
+                <li>дотриманням санітарних норм в роботі</li>
+              </ul>
+              <ul class="vacancie__list" *ngIf="vacancie.title === 'kuhar-ramen-vok-copy'">
+                <li>приготування всіх необхідних заготовок для WOK процесу – ми все покажемо</li>
+                <li>приготуванням страв WOK</li>
+                <li>дотриманням санітарних норм в роботі</li>
+              </ul>
+            </div>
+            <div class="vacancie__feedback">
+              <p>Приєднуйся до команди! —
+                <a href="#" target="_blank" >залишай заявку</a>
+                або телефонуй за номером
+              </p>
+              <p>
+                +380676996634 Марія<br>
+                +380671070761 Анастасія
+              </p>
+              <p>
+                Детальніше про відкриті вакансії:&nbsp;
+                <a href="https://rabota.ua/ua/company3616782" target="_blank">
+                  <strong>rabota.ua</strong>
+                </a>
+              </p>
+              <p>&nbsp;</p>
+            </div>
+
+          </div>
+          <div class="vacancie__form">
+            <h2 class="vacancie-form__title title">Заявка на вакансію</h2>
+            <p class="text">
+              Заповніть дану заявку і ми зв’яжемося з вами найблищим часом
+            </p>
+            <form>
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Ім'я</mat-label>
+                      <input matInput />
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Прізвище</mat-label>
+                      <input matInput />
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+  
+              <table class="example-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <input
+                        type="email"
+                        matInput
+                        [formControl]="emailFormControl"
+                        placeholder="Ex. pat@example.com"
+                      />
+                      <mat-error
+                        *ngIf="
+                          emailFormControl.hasError('email') &&
+                          !emailFormControl.hasError('required')
+                        "
+                      >
+                        Please enter a valid email address
+                      </mat-error>
+                      <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Email is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Номер телефону</mat-label>
+                      <input type="tel" matInput />
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+              <textarea class="w-100"
+               rows="10"
+               placeholder="Чому ви хочете працювати з нами?"
+              ></textarea>
+              <div class="mb-4 mt-4">
+                <label for="formFile" class="form-label"
+                  >Загрузити картинку, файл</label
+                >
+                <input
+                  class="form-control w-100"
+                  type="file"
+                  id="formFile"
+                />
+              </div>
+              <button class="btn btn__primary mb-3" type="button">надіслати</button>
+            </form>
+          </div>
+        </div>
+     
+        <h2 class="vacancie__title title-page">Інші <span>вакансії</span></h2>
+        <div class="vicancie__swiper">
+          <swiper
+          [slidesPerView]="3"
+          [spaceBetween]="30"
+          [navigation]="true"
+          [pagination]="{ clickable: true }"
+        >
+          <ng-template swiperSlide *ngFor="let vacancie of userVacancies">
+            <img
+              [src]="vacancie.imagePath"
+              [routerLink]="['/vacancies', vacancie.id]"
+              class="card-img-top"
+              [alt]="vacancie.name"
+              (click)="scrollToTop()"
+            />
+            <h2 class="swiper__title"
+            [routerLink]="['/vacancies', vacancie.id]"
+            (click)="scrollToTop()">{{ vacancie.name }}</h2>
+          </ng-template>
+        </swiper>
+        </div>
+        <div class="vicancie__swiper-mob">
+          <swiper
+          [slidesPerView]="1"
+          [spaceBetween]="30"
+          [navigation]="true"
+          [pagination]="{ clickable: true }"
+        >
+          <ng-template swiperSlide *ngFor="let vacancie of userVacancies">
+            <img
+              [src]="vacancie.imagePath"
+              [routerLink]="['/vacancies', vacancie.id]"
+              class="card-img-top"
+              [alt]="vacancie.name"
+              (click)="scrollToTop()"
+            />
+            <h2 class="swiper__title" 
+            [routerLink]="['/vacancies', vacancie.id]"
+            (click)="scrollToTop()"
+            >{{ vacancie.name }}</h2>
+          </ng-template>
+        </swiper>
+        </div>
+
+
+
+ </div>
+</section>

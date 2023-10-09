@@ -1,0 +1,74 @@
+<section class="page__favorites favorites">
+    <div class="favorites__container">
+      <h2 class="favorites__title title-page">Улюблене</h2>
+      <div class="favorites__content">
+        <div class="product__cart" *ngFor="let product of userFavoritProducts">
+          <div class="product__card card">
+            <div class="block__special">
+              <div class="box-mark">
+                <p class="special__category" *ngIf="product.category.path === 'culinasia-special'">CULINASIA SPECIAL</p>
+              </div>
+              
+              <div class="product_top-right">
+                <div class="icon"  (click)=" deleteleToFavorites(product)">
+                  <button type="button" class="btn-close" 
+                  aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+            <div class="card__image">
+              <a [routerLink]="['/product/' + product.category.path, product.id]" href="#">
+                <img [src]="product.imagePath" alt="product.name"/>
+              </a>
+            </div>
+            <div class="floating__btn">
+              <button class="btn btn-grey">Швидке замовлення</button>
+            </div>
+            <div class="cart__content">
+              <div class="card__title">
+                <div>
+                    <a
+                    [routerLink]="['/product/' + product.category.path, product.id]"
+                    href="#"
+                    >{{ product.name }}</a
+                  >
+                </div>
+                <div class="">
+                  <h4>{{ product.price * product.count }}</h4>
+                </div>
+              </div>
+              <div class="card__description text">
+                <p>
+                  {{
+                    product.description.length > 100
+                      ? (product.description | slice : 0 : 100) + "..."
+                      : product.description
+                  }}
+                </p>
+              </div>
+              <div class="card__controls">
+                <div class="btn-group">
+                  <button (click)="productCount(product, false)" type="button" class="btn-count">
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [value]="product.count"/>
+                  <button
+                    (click)="productCount(product, true)"
+                    type="button"
+                    class="btn-count"
+                  >
+                    +
+                  </button>
+                </div>
+                <a class="btn btn__primary" (click)="addToBasket(product)">Замовити</a>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

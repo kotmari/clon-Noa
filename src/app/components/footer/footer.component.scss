@@ -1,0 +1,169 @@
+.footer {
+    margin-top: 50px;
+    margin-bottom: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-footer__body {
+   display: grid;
+   gap: 20px;
+   grid-template-columns: 32% 48% 20%;
+}
+.main-footer__column {
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+}
+
+.main-footer__column:not(:last-child){
+    margin-bottom: 25px;
+}
+
+.main-footer__column-content{
+    display: flex;
+    gap: 15px;
+}
+
+.item-text{
+    color: #2d2c2c;
+    font-weight: 600;
+}
+
+.main-footer__icon{
+    position: relative;
+}
+
+.icon1{
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    font-size: 26px;
+}
+
+.text2 a{
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.text2:hover{
+    text-decoration: underline;
+}
+
+.btn-icon{
+    height: 47px;
+    width: 47px;
+}
+
+.btn-icon img{
+    height: 47px;
+    width: 47px;
+}
+
+
+.menu-footer__list {
+   display: grid;
+   gap: 20px;
+}
+.menu-footer__item {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.menu-footer__link:hover {
+   color: #2d7d7d;
+}
+
+.main-footer__social{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.main-footer__social-center{
+ display: flex;
+ justify-content: center;
+ gap: 15px;
+}
+
+.btn-icon2.facebook .bg-icon2 path {
+    fill: #fff;
+    transition: all .3s;
+    position: relative;
+    
+}
+
+.btn-icon2 .bg-icon2 {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: -32px;
+}
+
+
+.btn-icon2.facebook .bg-icon2 {
+    margin-top: 15px;
+    margin-left: -27px;
+}
+
+
+.bottom-footer {
+    padding: 10px 0;
+}
+
+.bottom-footer__copy {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+.bottom-footer__text2 p{
+    text-align: end;
+}
+
+.bottom-footer__card{
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   border: none;
+}
+
+
+.card__img{
+    align-items: center;
+    width: 65px;
+    height: 40px;
+    border: 1px solid #ececec;
+    border-radius: 5px;
+}
+
+@media(max-width: 991px){
+    .main-footer__body{
+        grid-template-columns: auto;
+    }
+
+    .main-footer__social{
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+@media(max-width: 791px){
+   .bottom-footer__copy{
+    grid-template-columns: auto;
+   }
+}
+
+@media(max-width: 475px){
+    .main-footer__column {
+        flex-direction: column;
+    }
+
+}

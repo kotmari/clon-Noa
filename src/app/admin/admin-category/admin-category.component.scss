@@ -1,0 +1,65 @@
+@import "../../../shared/style/variables";
+
+.btn-add {
+  width: 275px;
+  height: 50px;
+  border: 2px solid $primary;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin: 0px 0 20px 10px;
+}
+
+.btn-add:hover {
+  background-color: $primary;
+  border: none;
+  color: azure;
+}
+
+.btn-danger{
+  border: 1px solid #000;
+  color: brown;
+}
+
+.btn-primary{
+  padding: 10px 25px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-elevation-z8{
+  background-color: rgb(240, 239, 239);
+  
+}
+
+.mdc-data-table__header-cell {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(44, 41, 41, 0.87);
+  border: 2px solid $primary;
+}
+
+
+.mdc-data-table__cell{
+  color: #000;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+
+  img{
+    width: 100%;
+    margin-bottom: -25px;
+  }
+}
+
+input::placeholder{
+font-size: 10px;
+}

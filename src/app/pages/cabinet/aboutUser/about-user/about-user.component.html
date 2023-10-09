@@ -1,0 +1,30 @@
+<section class="page__aboutUser aboutUser">
+   <div class="aboutUser__container">
+     <div class="title-page title">Особисті дані</div>
+     <div class="aboutUser_form">
+      <form class="example-container" [formGroup]="aboutForm">
+            <mat-form-field class="example-full-width">
+               <mat-label>Ім'я</mat-label>
+               <input matInput formControlName="firstName" name="firstName" id="firstName">
+             </mat-form-field>
+             <mat-form-field class="example-full-width">
+               <mat-label>Прізвище</mat-label>
+               <input matInput formControlName="lastName" name="lastName" id="lastName">
+             </mat-form-field>
+             <mat-form-field class="example-full-width">
+             <mat-label>Telephone</mat-label>
+             <span matPrefix>+3 &nbsp;</span>
+             <input type="tel" matInput placeholder="555-555-1234" formControlName="phoneNumber" name="phoneNumber">
+             <mat-icon matSuffix>mode_edit</mat-icon>
+             </mat-form-field>
+             <mat-form-field class="example-full-width">
+               <mat-label>Адреса</mat-label>
+               <input matInput formControlName="address" name="address">
+             </mat-form-field>
+             <div class="example-button-row">
+               <button type="button" mat-raised-button color="primary" class="me-3" (click)="updateUser()">Зберегти зміни</button>
+             </div>
+       </form>
+     </div>
+   </div>
+</section>

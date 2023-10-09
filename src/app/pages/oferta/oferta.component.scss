@@ -1,0 +1,94 @@
+@import "../../../shared/style/variables";
+
+
+.simple-banner {
+  padding: 20px 15px;
+
+  .breadcrumbs {
+    display: flex;
+    font-size: 14px;
+  }
+
+  .breadcrumbs a {
+    color: $color-title;
+  }
+
+  .breadcrumbs li:first-child:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    margin: 0 15px 0 10px;
+  }
+}
+
+.title-oferta {
+  font-size: 38px;
+  font-weight: 700;
+  margin: 25px 0;
+  text-align: center;
+  color: $color-title;
+}
+.title-oferta span {
+  color: $primary;
+}
+
+@media (max-width: 767px) {
+  .simple-banner{
+    padding: 10px 10px;
+  } 
+
+  .title-oferta {
+    margin: 15px 0;
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-oferta {
+    margin: 7px 0;
+    font-size: 24px;
+  }
+}
+
+.text,
+.text p {
+  color: #6D6D6D;
+  font-size: 20px;
+  line-height: 1.2em;
+  padding: 10px;
+  text-align: justify;
+}
+
+.simple-page {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 25px;
+}
+
+.page-id-282 .simple-page.text {
+  margin-top: 50px;
+}
+@media (max-width: 992px) {
+  .text,
+  .text p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-id-282 .simple-page.text {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text,
+  .text p {
+    font-size: 14px;
+  }
+}

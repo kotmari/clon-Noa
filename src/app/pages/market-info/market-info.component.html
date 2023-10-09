@@ -1,0 +1,52 @@
+<section class="page__market-info market-info">
+  <div class="market__container">
+    <div class="simple-banner" *ngIf="userProductDetalis">
+      <ul class="breadcrumbs">
+        <li><a [routerLink]="['']" routerLinkActive="active"> <span>NOA</span></a></li>
+        <li><a [routerLink]="['/thai-market/' + userProductDetalis.category.path]"
+            routerLinkActive="active">
+            <span>{{ userProductDetalis.category.name }}</span></a>
+        </li>
+        <li class="active">
+          <span>{{ userProductDetalis.name }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="product-info__content" *ngIf="userProductDetalis">
+      <div class="product-info__img" *ngIf="userProductDetalis">
+        <button class="fav-btn"></button>
+          <img
+            [src]="userProductDetalis.imagePath"
+            [alt]="userProductDetalis.name" />
+      </div>
+      
+      <div class="product-info__detalis">
+        <div class="product-info__size">
+          <p>{{ userProductDetalis.weight }}<span> г</span></p> 
+        </div>
+      <h2 class="product-info__title title">{{ userProductDetalis.name }}</h2>
+      <div class="product-info__description text">
+        <p [innerHTML]="userProductDetalis.description"></p>
+      </div>
+      <div class="product_detail-controls">
+        <div class="btn-group">
+          <button (click)="productCount(userProductDetalis, false)"
+            type="button"class="btn-count">-</button>
+          <input type="text"class="form-control"[value]="userProductDetalis.count" style="width: 45px"/>
+          <button (click)="productCount(userProductDetalis, true)"
+          type="button" class="btn-count">+</button>
+        </div>
+        <div class="product-info__price">
+          <h4 class="title">{{ userProductDetalis.price * userProductDetalis.count }}<span> грн</span></h4>
+        </div>
+      </div>
+      <div class="product-info__btns">
+        <button class="btn-small btn-small-1">Швидке замовлення</button>
+        <button class="btn btn-small" (click)="addToBasket(userProductDetalis)">Додати в кошик
+        </button>
+      </div>
+     </div>
+    </div>
+  </div>
+</section>
+

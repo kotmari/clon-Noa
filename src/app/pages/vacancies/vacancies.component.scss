@@ -1,0 +1,59 @@
+@import "../../../shared/style/variables";
+
+
+  .vacancies__content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .vacancies__card{
+    padding: 5px;
+    border: none;
+  }
+
+  .card__img img{
+    width: 100%;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+
+  .card__img img:hover{
+    transform: scale(1.05);
+  }
+
+  .card__title{
+    cursor: pointer;
+    padding: 10px;
+    text-align: start;
+    transition: color 0.5s ease;
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .card__title:hover{
+    color: $primary;
+  }
+
+  @media (max-width: 768.98px) {
+    .vacancies__content{
+      display: grid;
+      grid-template-columns: auto;
+    }
+
+  }
+  
+  @media (max-width: 576px) {
+    .vacancies__content{
+      gap: 10px;
+    }
+
+    .card__title{
+      font-size: 18px;
+      padding: 10px 0 0 0;
+    }
+
+  }

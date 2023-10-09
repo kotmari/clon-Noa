@@ -1,1 +1,187 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "./shared/style/base";
+@import "./shared/style/variables";
+@import "./shared/style/thime-material";
+
+
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+@import "ngx-toastr/toastr";
+
+html,
+body {
+  height: auto;
+  overflow: visible;
+
+  background-image: url(./assets/image/bg-w-o3.png);
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #6D6D6D;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #2d7d7d;
+}
+
+[class*="__container"]{
+    max-width: 76.875rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    margin: 0 auto;
+}
+
+
+.title-page{
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.2em;
+  color: #2D2C2C;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.title-page span{
+  color: #2d7d7d;
+}
+
+.title{
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2em;
+  color: #2D2C2C;
+  text-align: center;
+}
+
+.text{
+  line-height: 1.5em;
+  font-size: 16px;
+}
+
+.bnt-big{
+
+}
+
+.btn-small {
+  font-size: 12px;
+  padding: 18px 30px;
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid #2d7d7d;
+  border-radius: 6px;
+  color: #2d7d7d;
+  background: none;
+  transition: all 0.3s;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+
+.btn-count {
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.btn-count:hover {
+  border: 1px solid #2d7d7d;
+  background-color: #2d7d7d;
+  color: #fff;
+}
+
+.btn-small:hover {
+  color: #fff;
+  background: #2d7d7d;
+}
+
+.btn-small{
+  margin-bottom: 15px;
+}
+
+
+
+.btn {
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+  transition: 0.3s;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  padding: 10px 25px;
+  letter-spacing: .15em;
+}
+
+.btn.btn__primary {
+  color: #FFF;
+  background: #2d7d7d;
+  border: 2px solid #2d7d7d;
+  border-radius: 6px;
+  padding: 18px 30px;
+  text-transform: uppercase;
+}
+
+.btn__primary:hover{
+  background-color: #fff;
+  color: #2d7d7d;
+}
+
+
+
+
+
+@media (max-width: 35.4988rem){
+  .title-page{
+    font-size: 38px;
+  }
+
+  .title{
+    font-size: 26px;
+  }
+
+  .btn-small {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 425.98px){
+  .title-page{
+    font-size: 26px;
+  }
+  
+  .title{
+    font-size: 24px;
+    line-height: 1.4em;
+  }
+}

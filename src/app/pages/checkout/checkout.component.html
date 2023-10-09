@@ -1,0 +1,187 @@
+<section class="page__checkout checkout">
+  <div class="checkout__container">
+    <h2 class="checkout__title title-page">Оформлення замовлення</h2>
+      <div class="checkout__delivery-form">
+        <form class="example-form" [formGroup]="orderForm">
+          <div class="example-form__box1">
+            <div class="form-title"><b>1.</b> Контактні дані</div>
+            <div class="form-gruop">
+              <mat-form-field class="example-full-width">
+                <mat-label>*Ваше ім'я</mat-label>            
+                <input type="text" matInput formControlName="lastName"
+                placeholder="*Ваше ім'я"
+              /></mat-form-field>
+          <mat-form-field class="example-full-width" >
+            <mat-label>Ваше прізвище</mat-label>
+            <input type="text"
+            matInput placeholder="*Ваше прізвище" formControlName="firstName"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Номер телефону</mat-label>
+            <span matPrefix>+38 &nbsp;</span>
+            <input type="tel" matInput placeholder="" formControlName="phone">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Вашa ел.пошта для отримання доставки</mat-label>
+            <input type="email" matInput
+             placeholder="Вашa ел.пошта для отримання доставки" />
+          </mat-form-field>
+            </div>
+
+          <div class="form-title"><b>2.</b> Інформація про доставку</div>
+          <div class="checkbox-entry-wrap">
+            <label class="checkbox-entry">
+            <input id="driveDelivery" type="checkbox" formControlName="delivery" checked>
+              <span>{{selectedOption}}</span>
+            </label>
+          </div>
+            <div class="delivery__tapy" *ngIf="selectedOption === 'Доставка кур\'єром'">
+              <mat-form-field appearance="fill" class="form__select" >
+                <mat-label>Вибиріть місто</mat-label>
+                <mat-select disableRipple formControlName="userCity">
+                  <mat-option value="Львів">Львів</mat-option>
+                  <mat-option value="Дубляни">Дубляни</mat-option>
+                  <mat-option value="Брюховичі">Брюховичі</mat-option>
+                  <mat-option value="Жирівка">Жирівка</mat-option>
+                  <mat-option value="Зимна вода">Зимна вода</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="form__gruop">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Введіть вулицю  та № будинку для доставки</mat-label>
+                  <input type="text" formControlName="addressUser" 
+                  matInput placeholder="*Введіть вулицю  та № будинку для доставки"/>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="delivery__tepy" *ngIf="selectedOption === 'Самовивіз'">
+              <div class="form-gruop">
+                <mat-form-field appearance="fill" class="form__address" >
+                  <mat-label>Ресторан за адресою </mat-label>
+                  <mat-select disableRipple formControlName="addressRestoran">
+                    <mat-option value="Крива Липа 8">Крива Липа 8</mat-option>
+                    <mat-option value="ТЦК Спартак вул. Мазепи 1б">ТЦК Спартак вул. Мазепи 1б</mat-option>
+                    <mat-option value="Староеврейська 10">Староеврейська 10</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="form-gruop">
+                <mat-form-field>
+                  <mat-label>Виберіть дату</mat-label>
+                  <input matInput [matDatepicker]="picker2"
+                         [formControl]="serializedDate" formControlName="data">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-select  placeholder="Виберіть часовий інтервал" disabled>
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="form-gruop">
+                <div class="delivery-block__map">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8654.867169146031!2d24.022611981371185!3d49.84043939605851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add6c2ce99f0f%3A0xb96087125fa072f4!2z0LLRg9C70LjRhtGPINCh0YLQsNGA0L7RlNCy0YDQtdC50YHRjNC60LAsIDQsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgNzkwMDA!5e0!3m2!1suk!2sua!4v1694953496830!5m2!1suk!2sua" 
+                  width="100%" 
+                  height="450px" 
+                  style="border:0; overflow: hidden;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="example-form__box2">
+            <h3 class="form-title">Ваше замовлення</h3>
+            <div class="basket__card" *ngIf= "checkouts.length > 0">
+              <div class="basket__content" *ngFor="let checkout of checkouts">
+                  <div class="basket__img">
+                     <img
+                        [src]="checkout.imagePath"
+                        [alt]="checkout.name" />
+                  </div>
+                  <div class="basket__detalis">
+                       <h2 class="basket__title title">{{ checkout.name }}</h2>
+                      <div class="product_detail-controls">
+                          <div class="btn-group">
+                             <button (click)="productCount(checkout, false)"
+                             type="button"class="btn-count">-</button>
+                             <input type="text"class="form-control"[value]="checkout.count" style="width: 45px"/>
+                              <button (click)="productCount(checkout, true)"
+                             type="button" class="btn-count">+</button>
+                          </div>
+                       </div>
+                  </div>
+                  <div class="basket__price">
+                      <div class="icon" (click)="deleteCheckoutProduct(checkout)">
+                        <button type="button" class="btn-close" aria-label="Close"></button>
+                      </div>
+                      <h4 >{{ checkout.price * checkout.count }}<span> грн</span></h4>
+                  </div>
+               </div>
+          </div>
+         <div class="divaces__block" *ngIf="toggleDivace">
+          <h3 >Прибори</h3>
+          <p>Вкажіть кількість осіб, на яке робите замовлення</p>
+          <div class="btn-group divace">
+            <button type="button"class="btn-count" (click)="divaceCount(false)">-</button>
+            <input matInput type="text" formControlName="countDevices" class="form-control" [value]="countDivaces" style="width: 45px"/>
+             <button type="button" class="btn-count" (click)="divaceCount(true)">+</button>
+         </div>
+         <p class="divace-text"><b> Безкоштовно</b></p>
+        </div>
+        <div class="checkbox-entry-wrap">
+         <label class="checkbox-entry">
+          <input id="driveDelivery" #driveDelivery 
+           type="checkbox" formControlName="devices" value="Без приборів"
+           (change)="toggleDivacesBlock()">
+            <span>Без приборів та серветок, з любов'ю до навколишнього середовища</span>
+          </label>
+        </div>
+        <div class="form-title"><b>3.</b> Інформація про оплату</div>
+        <div class="checkbox-entry-wrap">
+          <label class="checkbox-entry">
+          <input id="driveDelivery" type="checkbox">
+            <span>Оплата готівкою</span>
+          </label>
+        </div>
+        <div class="checkbox-entry-wrap" *ngIf="selectedOption === 'Доставка кур\'єром'">
+          <label class="checkbox-entry">
+          <input id="driveDelivery" type="checkbox" value="Online payment" formControlName="onlinePayment">
+            <span>Online payment LiqPay</span>
+          </label>
+        </div>
+        <div class="checkbox-entry-wrap">
+          <label class="checkbox-entry">
+          <input id="driveDelivery" type="checkbox" value="не телефонувати" formControlName="call">
+            <span>Мені можна не телефонувати для підтвердження замовлення</span>
+          </label>
+        </div>
+        <div class="checkbox-entry-wrap">
+          <label class="checkbox-entry">
+          <input id="driveDelivery" type="checkbox">
+            <span>Коментар / промокод / інше</span>
+          </label>
+        </div>
+          
+
+      <div class="basket__bottom">
+        <h4 >Сума: <span class="title"> {{total}}</span> грн</h4>
+        <button class="btn btn__primary" (click)="ordersData()">
+          <a>оформити замовлення</a>
+        </button>
+      </div>
+      </div>
+        </form>
+      </div>
+  </div>
+</section>
+
+
+<!-- [routerLink]="['']"
+routerLinkActive="rout-active" -->

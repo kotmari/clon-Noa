@@ -1,0 +1,21 @@
+<form [formGroup]="authForm">
+  <h2 class="title-page">Вхід в кабінет</h2>
+  <div class="form-group">
+      <mat-form-field appearance="fill">
+          <mat-label>Електронна адреса</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Enter email...">
+        </mat-form-field>
+  </div>
+  <div class="form-group">
+      <mat-form-field appearance="fill">
+          <mat-label>Пароль</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter password...">
+        </mat-form-field>
+  </div>
+  <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="loginUser()">Увійти в кабінет</button>
+  </div>
+</form>
+
+
+  

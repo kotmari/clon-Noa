@@ -1,0 +1,28 @@
+<div class="popup__container">
+  <div class="popup__content">
+    <div class="popup__title title">
+      <p>Привіт!<br><span>Обери спосіб отримання замовлення</span></p>
+    </div>
+    <div class="popup__align">
+      <div class="delivery__popup-block" (click)="selectOption('Доставка кур\'єром')">
+          <div class="delivery-popup" >
+            <div class="delivery-popup__image" >
+              <img src="../../../assets/image/delivery_popup_one.svg" alt="" />
+            </div>
+            <p>Доставка кур’єром</p>
+          </div>
+          
+       </div>
+      <span>або</span>
+      <div class="delivery__popup-block" (click)="selectOption('Самовивіз')">
+          <div class="delivery-popup" >
+            <div class="delivery-popup__image">
+              <img src="../../../assets/image/delivery_popup_two.svg" alt="" />
+            </div>
+            <p>Самовивіз</p>
+         </div>
+         
+      </div>
+    </div>
+  </div>
+</div>

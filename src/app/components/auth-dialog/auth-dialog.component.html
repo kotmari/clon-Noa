@@ -1,0 +1,127 @@
+<section>
+    
+<div class="close">
+    <div class="icon">
+        <mat-icon aria-hidden="false" aria-label="Example close icon" fontIcon="close" mat-dialog-close></mat-icon>
+    </div>
+</div>
+
+<form [formGroup]="loginForm"  *ngIf="showLoginForm" (ngSubmit)="loginUser()" >
+    <h2>Вхід в кабінет</h2>
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Електронна адреса</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Enter email...">
+          </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Пароль</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Enter password...">
+          </mat-form-field>
+    </div>
+        <button type="submit" class="btn btn__primary btn-modal">Увійти в кабінет</button>
+    <div class="check-login">
+        <div class="check-login__title green">
+            <a (click)="changePasswordResetForm()">Забули пароль</a>
+        </div>
+        <div class="check-login__title"> 
+            <a (click)="changeRegistrationForm()">Зареєструватися?</a>
+        </div>
+        
+    </div>
+</form>
+
+<form *ngIf="showPasswordResetForm" (ngSubmit)="forgotPassword()">
+    <h2>Відновити пароль</h2>
+    <div class="popup-description">
+        <p>Після заповнення форми, ми надішлемо вам детальну інструкцію по відновленню паролю</p>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Електронна адреса</mat-label>
+            <input [formControl]="emailFormControl" matInput type="email" name="userEmail" placeholder="Enter email...">
+            <mat-error
+                      *ngIf="
+                        emailFormControl.hasError('email') &&
+                        !emailFormControl.hasError('required')
+                      "
+                    >
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+          </mat-form-field>
+    </div>
+        <button type="submit" class="btn btn__primary btn-modal">Відновити пароль</button>
+    <div class="check-login">
+        <span class="check-login__title">Повернутися до </span>
+        <div class="check-login__title green">
+             <a (click)="changeLoginForm()">Входу</a></div>
+     </div>
+</form>
+
+
+
+<form [formGroup]="registerForm"  *ngIf="showRegistrationForm" (ngSubmit)="registerUser()" >
+    <h2>Зареєструватися</h2>
+    <div class="form-group form-group2">
+        <mat-form-field appearance="fill">
+            <mat-label>Ім'я</mat-label>
+            <input matInput type="text" formControlName="firstName" placeholder="Введіть ім'я...">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Прізвище</mat-label>
+            <input matInput type="text" formControlName="lastName" placeholder="Введіть прізвище...">
+          </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Номер телефона</mat-label>
+            <input matInput type="text" formControlName="phoneNumber" placeholder="Введіть номет телефона...">
+          </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Електронну адресу</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="Enter email...">
+          </mat-form-field>
+    </div>
+    <div class="form-group form-group2">
+        <mat-form-field appearance="fill">
+            <mat-label>Пароль</mat-label>
+            <input (input) = "checkConfirmedPassword()" matInput
+                   type="password" formControlName="password" placeholder="Enter password...">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Повторіть пароль</mat-label>
+            <input (input) = "checkConfirmedPassword()"
+                   matInput type="password" formControlName="confirmedPassword" placeholder="repeat password...">
+          </mat-form-field>
+    </div>
+    <mat-error *ngIf="checkVisibilityError('confirmedPassword', 'matchError')">
+    "Confirmed password required"
+    </mat-error>
+    <div class="form-group form-group3">
+        <mat-checkbox checked>
+            Хочу отримувати пропозиції на email
+          </mat-checkbox>
+        </div>
+        <div class="form-group form-group3">
+            <mat-checkbox formControlName="agreeToTerms" checked>
+                Я погоджуюсь з <a href="#">Правилами користування</a>
+              </mat-checkbox>
+    </div>
+        <button [disabled]="registerForm.invalid" type="submit" class="btn btn__primary btn-modal">Зареєструватися</button>
+    <div class="check-login">
+        <div class="check-login__title">
+            <p class="text">Ви зареєструвані?</p>
+        </div>
+        <div class="check-login__title green">
+            <a (click)="changeLoginForm()">Увійти</a>
+        </div>
+   </div>
+</form>
+</section>
+

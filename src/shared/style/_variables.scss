@@ -1,0 +1,10 @@
+$primary:#2d7d7d;
+$color-title: #2d2c2c;
+
+@mixin btn-primary {
+    color: #FFF;
+    background: #2d7d7d;
+    border: 2px solid #2d7d7d;
+    border-radius: 6px;
+    padding: 10px 15px;
+  }

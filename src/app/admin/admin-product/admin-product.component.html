@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="row">
+      <div class="col-10 ms-5">
+        <button (click)="addForm()" type="button" class="btn btn-add">
+          Додати Продукт
+        </button>
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+          <div *ngIf="addForms">
+              <div class="w-100">
+                <div class="mb-2 me-3 w-100 d-flex justify-content-between">
+                    <div class="mb-3 w-50 me-2">
+                        <label for="exampleFormControlInput1" class="form-label">Назва категорії</label>
+                        <select formControlName="category" class="form-select">
+                            <option [ngValue]="category"
+                            *ngFor="let category of adminCategory">{{ category.name }}
+                            </option>
+                          </select>
+                    </div>
+                    <div class="mb-2 me-2">
+                        <label for="exampleFormControlInput1" class="form-label">Назва</label>
+                        <input 
+                          formControlName="name"
+                          type="text"
+                          class="form-control me-3"
+                          id="exampleFormControlInput1"
+                          placeholder="Введіть назву"
+                        />
+                    </div>
+                    <div class="mb-2 me-2">
+                        <label for="exampleFormControlInput" class="form-label">Назва шляху</label
+                            >
+                            <input
+                              formControlName="path"
+                              type="text"
+                              class="form-control w-100"
+                              id="exampleFormControlInput"
+                              placeholder="Введіть заголовок"
+                            />
+                    </div>
+                 </div>
+                 <div class="mb-2 me-3 w-100 d-flex justify-content-start">
+                    <div class="mb-2 mb-3">
+                        <label for="exampleFormControlInput" class="form-label">Вага</label
+                        >
+                        <input
+                          formControlName="weight"
+                          type="text"
+                          class="form-control w-100"
+                          id="exampleFormControlInput"
+                          placeholder="Введіть заголовок"
+                        />
+                      </div>
+                      <div class="mb-2">
+                        <label for="exampleFormControlInput" class="form-label">Ціна</label
+                        >
+                        <input
+                          formControlName="price"
+                          type="text"
+                          class="form-control w-100"
+                          id="exampleFormControlInput"
+                          placeholder="Введіть заголовок"
+                        />
+                      </div>
+                      <div class="mb-2">
+                        <label for="exampleFormControlInput" class="form-label">Favorit</label
+                        >
+                        <input
+                          formControlName="isFavorite"
+                          type="text"
+                          class="form-control w-100"
+                          id="exampleFormControlInput"
+                          placeholder="Введіть favorit"
+                        />
+                      </div>
+                      <div class="mb-2">
+                        <label for="exampleFormControlInput" class="form-label">Lebel</label
+                        >
+                        <input
+                          formControlName="lebel"
+                          type="text"
+                          class="form-control w-100"
+                          id="exampleFormControlInput"
+                          placeholder="Введіть veggie"
+                        />
+                      </div>
+                 </div>
+
+              </div>
+      
+            <div class="form-floating">
+              <textarea
+                formControlName="description"
+                class="form-control mb-3"
+                id="floatingTextarea2"
+                style="height: 100px"
+              ></textarea>
+              <label for="floatingTextarea2">Опис</label>
+            </div>
+      
+            <ng-container *ngIf="!isUploaded">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Загрузити картинку</label>
+                <input class="form-control w-150" type="file" id="formFile"  (change)="uploadProduct($event)" />
+              </div>
+            </ng-container>
+            <ng-container *ngIf="isUploaded">
+              <div class="d-flex flex-column">
+                <img [src]="valueByControl('imagePath')" alt="" width="150px" />
+                <button
+                  type="button"
+                  class="btn btn-danger mb-3 mt-3 w-100"
+                  (click)="deleteImage()"
+                >
+                  Delete
+                </button>
+              </div>
+            </ng-container>
+            <button
+              [disabled]="productForm.invalid"
+              type="submit"
+              class="btn-admin mb-3 w-100"
+            >
+              {{ editStatus ? "Save" : "Add" }}
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-10 ms-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Категорія</th>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Назва шляху</th>
+                    <th scope="col">Опис</th>
+                    <th scope="col">Ціна</th>
+                    <th scope="col">Фан</th>
+                    <th scope="col">Тип</th>
+                    <th scope="col">Вага</th>
+                    <th scope="col">Зоображення</th>
+                    <th scope="col">Дії</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of adminProduct">
+                    <td>{{ product.id | slice:0:5}}</td>
+                    <td>{{ product.category.name }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.path }}</td>
+                    <td>{{ product.description | slice:0:30 }}</td>
+                    <td>{{ product.price }} грн</td>
+                    <td>{{ product.isFavorite}}</td>
+                    <td>{{ product.lebel}}</td>
+                    <td>{{ product.weight }} гр</td>
+                    <td class="centered-cell">
+                        <img [src]="product.imagePath" alt="" height="50px">
+                    </td>
+                    <td class="centered-cell">
+    
+                        <button (click)="editProduct(product)" type="button" class="btn btn-admin2 me-2">Edit</button>
+                        <button [disabled]="editStatus" (click)="deleteProduct(product)" type="button" class="btn btn-admin2">Delete</button>
+    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    </div>

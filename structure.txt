@@ -1,0 +1,24 @@
+app/components/header.component
+              /footer.component
+              /auth-dialog.component
+              /basket.component
+
+    /pages/home.component
+          /product-category.component
+          /product.component
+          /product-info.component
+          /checkout.component
+          /cabinet.component
+          /authorization.component
+          /about.component
+          /doctavka.component
+          /oferta.component
+          /contacts.component
+          /favorites.component
+          /vacancies.component
+          /vacancies-info.component
+
+    /admin.component/admin-category.component
+                    /admin-product.component
+                    /admin-orders.component
+                    /admin-vacancies.component

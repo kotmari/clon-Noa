@@ -1,0 +1,21 @@
+<section class="page__cabinet cabinet">
+   <div class="cabinet__container">
+    <div class="cabinet__content">
+       <div class="cabinet__navigate">
+         <div class="nav-content nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+           <button [routerLink]="['aboutUser']"
+                   routerLinkActive="rout-active" class="btn-small btn-nav" type="button">Особисті дані</button>
+           <button [routerLink]="['orderUser']"
+                   routerLinkActive="rout-active" class="btn-small btn-nav" type="button">Замовлення</button>
+           <button [routerLink]="['change-password']"
+                   routerLinkActive="rout-active" class="btn-small btn-nav" type="button">Зміна паролю</button>
+           <button (click)="logout()" class="btn-small btn-nav" type="button">Вихід</button>
+         </div>
+       </div>
+       <div class="cabinet__page-content" id="v-pills-tabContent">
+        <router-outlet></router-outlet>
+      </div>
+     </div>
+     
+   </div>
+</section>

@@ -1,0 +1,32 @@
+<section class="page__vacancies vacancies">
+  <div class="vacancies__container">
+    <h2 class="vacancies__title title-page">
+      Приєднуйся до команди <span>NOA</span>
+    </h2>
+    <div class="vacancies__content">
+        <ng-container *ngIf="userVacancies.length > 0">
+          <div class="vacancies__card card"*ngFor="let vacancie of userVacancies">
+            <div class="card__img">
+              <img
+                [src]="vacancie.imagePath"
+                [routerLink]="['/vacancies', vacancie.id]"
+                [alt]="vacancie.name"
+              />
+                <h2 class="card__title title">
+                  <a [routerLink]="['/vacancies', vacancie.id]">{{ vacancie.name }}</a>
+                </h2>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="userVacancies.length == 0">
+          <div class="card text-center">
+            <div class="card-header"></div>
+            <div class="card-body">
+              <h1>Нажаль на даний час у нас не має вакансій!</h1>
+            </div>
+            <div class="card-footer text-muted"></div>
+          </div>
+        </ng-container>
+      </div>
+  </div>
+</section>

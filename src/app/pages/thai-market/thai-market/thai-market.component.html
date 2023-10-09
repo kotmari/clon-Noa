@@ -1,0 +1,173 @@
+<section class="page__thai-market thai-market ">
+   <div class="thai-market __container">
+    <h2 class="thai-market__title title-page">Thai <span>Market</span></h2>
+      <div class="product__categories categories-menu" [class.active]="isCategoryActive" >
+        <div class="category-title" (click)="toggleList()">Thai Satay</div>
+        <ul class="categories-menu__list">
+          <li class="categories-menu__item">
+            <a [routerLink]="['/thai-market/thai-starters']" routerLinkActive="active-item">Thai Starters</a>
+          </li>
+          <li class="categories-menu__item">
+            <a [routerLink]="['/thai-market/thai-satay']"routerLinkActive="active-item">Thai Satay</a>
+          </li>
+          <li class="categories-menu__item">
+            <a [routerLink]="['/thai-market/thai-soup']" routerLinkActive="active-item">Thai Soup</a>
+          </li>
+          <li class="categories-menu__item">
+            <a [routerLink]="['/thai-market/thai-wok']" routerLinkActive="active-item">Thai WOK</a>
+          </li>
+        </ul>
+      </div>
+      <div class="product__items">
+        <div class="" *ngFor="let product of userProducts">
+          <div class="product__card card">
+            <div class="block__special">
+              <div class="box-mark">
+                <!-- <p class="special__category" *ngIf="product.category.path === categoryName">CULINASIA SPECIAL</p> -->
+              </div>
+              
+              <div class="product_top-right">
+                <button class="fav-btn" (click)="toggleToFavorites(product)">
+                  <mat-icon *ngIf="!product.isFavorite" matSuffix>favorite</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="card__image">
+              <a [routerLink]="['/thai-market/' + product.category.path, product.id]" href="#">
+                <img [src]="product.imagePath" alt="product.name"/>
+              </a>
+            </div>
+            <div class="floating__btn">
+              <button class="btn btn-grey">Швидке замовлення</button>
+            </div>
+            <div class="cart__content">
+              <div class="card__title">
+                <div>
+                    <a
+                    [routerLink]="['/thai-market/' + product.category.path, product.id]"
+                    href="#"
+                    >{{ product.name }}</a
+                  >
+                </div>
+                <div class="">
+                  <h4>{{ product.price * product.count }}</h4>
+                </div>
+              </div>
+              <div class="card__description text">
+                <p>
+                  {{
+                    product.description.length > 100
+                      ? (product.description | slice : 0 : 100) + "..."
+                      : product.description
+                  }}
+                </p>
+              </div>
+              <div class="card__controls">
+                <div class="btn-group">
+                  <button (click)="productCount(product, false)" type="button" class="btn-count">
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [value]="product.count"/>
+                  <button
+                    (click)="productCount(product, true)"
+                    type="button"
+                    class="btn-count"
+                  >
+                    +
+                  </button>
+                </div>
+                <a class="btn btn__primary" (click)="addToBasket(product)">Замовити</a>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      <div class="categories__description" *ngIf="categoryName === 'starters'">
+        <h2 class="product__title2 title-page"><span>У </span> свято чи будень: доставка стартерів та закусок з NOA</h2>
+        <h3 class="product-accordion__title">Cтартери та закуски з Noa для вас</h3>
+        <div class="product__text text">
+          <p>Смачна їжа — це запорука гарного настрою. Проте іноді бувають дні, коли готувати зовсім не хочеться. 
+            Не примушуйте себе: просто оберіть страви з меню NOA. У нас є не лише рамени та вок. 
+            А й смачні салати, закуски та стартери. Це чудовий вибір для перекусу вдома або в офісі, вечірки з друзями, сімейних посиденьок. 
+            Ми розробили наше меню стартерів для того, 
+            щоб кожен наш гість зміг обрати страви до душі та спробувати щось новеньке
+          </p>
+          <p>Доставка стартерів, салатів та закусок з NOA — це:</p>
+          <ol class="product-accordion__list1">
+            <li>Смачно — готуємо для вас, як для своїх рідних. Лише добірні інгредієнти та рецепти, вдосконалені нашими шеф-кухарями.
+            </li>
+            <li>Різноманітно — обирайте страви, які подобаються саме вам. А ми подбаємо про те, щоб вибір завжди був достатнім.
+            </li>
+            <li>Швидко — привеземо страви в зеленій зоні всього за 45 хвилин. Ви навіть не встигнете сильно зголодніти.</li>
+        </ol>
+        <p>Тож пропонуємо просто зараз дізнатися про наше меню стартерів трошки більше.</p>
+        </div>
+        <div class="product__read-more" (click)="toggleAccordion()">читати більше</div>
+        <div  class="product__accordion" [ngClass]="{'product-accordion-activ': accordionClick}">
+          <h3 class="product-accordion__title">Салати, закуски та стартери (Львів), приготовані з любов'ю</h3>
+          <div class="product-accordion__text text">
+            <p>Саме це чекає на вас в меню NOA. Наші шеф-кухарі ретельно працюють над створенням кожної страви. 
+              Ми обираємо якісні, свіжі та смачні продукти від надійних постачальників. 
+              Якщо овочі — то щойно з грядки, морепродукти — натуральні, соуси — приготовані власними руками. 
+              Адже найважливіше для нас — тішити вас по-справжньому смачною їжею.</p>
+              <p>Рекомендуємо скуштувати:</p>
+              <ul class="product-accordion__list">
+                <li>Салати — “Біф тофу” зі шпинатом, тофу, міксом зелені, сушеною цибулею; “Спайсі туна” з тунцем; 
+                  “Філадельфія” з лососем та суші-ікрою. Кожен салат має гармонійне поєднання компонентів та подається з соусом. 
+                  Порції — доволі великі. Це чудовий вибір для перекусу або легкого обіду.
+                </li>
+                <li>Бао — це популярна страва азіатської кухні, яка готується на пару. 
+                  Булочка з дріжджового тіста має всередині смачну начинку: зелень, морепродукти, ікру тощо. 
+                  В азійських країнах таку страву полюбляють їсти на сніданок, але ми подаємо її цілий день.
+                </li>
+                <li>Гьодзе — смажені японські пельмені, але, спочатку, страва з'явилася в Китаї та називалася «Цзяоцзи».
+                   Готують гьодзе з дуже різноманітними начинками: зі свининою, качкою, капустою кімчі, креветкою, імбирем, часником. 
+                  Завдяки тому, що така страва — дуже ситна, ви можете замовляти її і як стартер, і як основну їжу.
+                </li>
+             </ul>
+
+              <p>А ще — обов'язково спробуйте рисові чіпси! Адже це — найпопулярніша закуска азіатської кухні.
+                 Вони хрусткі, смачні та легкі: те, що треба для перекусу. Окрім перерахованих страв, в нашому меню є багато цікавого.
+                  Кожну страву публікуємо на сайті зі складом, переліком всіх компонентів та вказуванням рівня гостроти. 
+                  Таким чином, ви без проблем зможете обрати їжу, яка сподобається саме вам. 
+                А ми зобов'язуємося привезти її свіжою, ароматною та теплою. </p>
+              <h3 class="product-accordion__title">Як працює наша доставка закусок у Львові?</h3>
+              <p>Стартери, салати та закуски NOA вам точно сподобаються: ми у цьому впевнені. 
+                Тому що ми готуємо їх не лише за найкращими рецептами тайської кухні, 
+                а й з турботою, любов'ю та увагою. Кожне замовлення для нас — особливе.</p>
+                <p>Розкажемо про нашу доставку трошки більше:</p>
+              <ol class="product-accordion__list1">
+                <li>Веземо сніданки у Львові в різні райони міста. Зелена зона — 45 хвилин, жовта — 55, червона — 65. 
+                  Перевірити, в якій зоні знаходиться ваша вулиця, можна в розділі “Доставка”.
+                </li>
+                <li>Доставляємо їжу безкоштовно у жовтій та зеленій зонах, якщо сума вашого замовлення перевищує 300 грн.
+                </li>
+                <li>Приймаємо різні способи оплати — готівкою та карткою, або через систему LiqPay. 
+                  Просто вкажіть, як саме бажаєте розрахуватися за ваше замовлення.
+                </li>
+                <li>Працюємо для вас з 10:00 до 21:00 щодня, без вихідних. Насолоджуйтесь нашими стравами і в будні, і у свята.
+                </li>
+              </ol>
+              <p>Ми працюємо щодня, з 10:00 до 21:00 без вихідних. Доставляємо смачні страви для вас у будні та вихідні, додому та в офіс. 
+                А якщо маєте можливість, завітайте у наші ресторани: гарантуємо смачну їжу та приємну атмосферу.</p>
+              <p>Бажаєте замовити стартери у Львові вже зараз? Ми готові приготувати їх для вас. Тож скоріш обирайте страви. 
+                Наші вправні шеф-кухарі створять їх з турботою та любов'ю. 
+                А найшвидші кур'єри — привезуть максимально швидко, оминаючи всі затори у місті. Бажаємо смачного</p>
+                <div class="product__read-more red" (click)="toggleAccordion()">згорнути</div>
+            </div>
+    
+        </div>
+    
+      </div>
+
+   </div>
+</section>
+
+
+
+
+

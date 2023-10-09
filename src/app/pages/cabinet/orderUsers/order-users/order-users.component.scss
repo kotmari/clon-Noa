@@ -1,0 +1,29 @@
+
+.order__form{
+   padding: 10px 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.example-container{
+   display: flex;
+   flex-direction: column;
+   max-width: 400px;
+   width: 500px;
+}
+
+@media (max-width: 480px) {
+   .title-page{
+      text-align: center;
+   }
+   .example-container{
+      width: 300px;
+   }
+
+   .example-button-row{
+      text-align: center;
+
+   }
+
+}

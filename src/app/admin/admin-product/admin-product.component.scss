@@ -1,0 +1,70 @@
+@import "../../../shared/style/variables";
+
+
+.btn-add {
+  width: 270px;
+  height: 50px;
+  border: 2px solid $primary;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin: 0px 0 20px 10px;
+}
+
+
+
+.btn-add:hover {
+    background-color: $primary;
+    border: none;
+    color: azure;
+  }
+  
+  .btn-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    border: 2px solid $primary;
+    background-color: $primary;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    margin: 5px 0;
+  }
+
+  .btn-danger{
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .btn-admin2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 30px;
+    border: 2px solid $primary;
+    color: $primary;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    margin: 5px 0;
+  }
+
+  tr th{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: 600;
+    color: $primary;
+    border-bottom: 2px solid $primary ;
+  }
+
+  .centered-cell {
+    text-align: center;
+    vertical-align: middle;
+  }

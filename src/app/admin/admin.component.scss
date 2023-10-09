@@ -1,0 +1,37 @@
+@import '../../shared/style/variables';
+.admin-section {
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: white;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+  }
+  
+.nav__admim{
+    width: 250px;
+   
+
+    .link {
+        height: 50px;
+        width: 100%;
+        border: 1px solid gray;
+        text-decoration: none;
+        color: $color-title;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 3px;
+
+    }
+
+    .rout-active{
+        border: none;
+        border-top: 3px solid $primary;
+    }
+    
+    .link-bg{
+        background-color: $primary;
+        color: #fff;
+    }
+   
+}

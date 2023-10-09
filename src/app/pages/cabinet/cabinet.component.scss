@@ -1,0 +1,53 @@
+@import '../../../shared/style/variables';
+
+.cabinet__content{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.cabinet__navigate{ 
+    flex: 30%;
+    gap: 10px;
+    margin-top: 15px;
+    text-align: center;
+    align-items: center;
+}
+
+.cabinet__page-content{
+    flex:70%
+}
+.nav-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-nav{
+    width: 200px;
+    padding: 10px;
+    margin: 0;
+}
+
+.rout-active{
+  color: #fff;
+  background-color: $primary;
+
+}
+
+@media (max-width: 768px) {
+    .cabinet__content{
+        flex-direction: column;
+    }
+
+    .cabinet__navigate{ 
+        flex: 100%;
+    }
+
+    .nav-content{
+        flex-direction: row;
+    }
+
+}
