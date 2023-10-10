@@ -117,8 +117,22 @@ export class ProductCategoryComponent {
     }
 
     toggleList(){
-     
-    }
+      const categoryTitle = document.querySelector('.category-title');
+      const categoriesMenu = document.querySelector('.categories-menu');
+    
+      if (categoryTitle && categoriesMenu) {
+        if (this.isCategoryActive) {
+          categoryTitle.classList.remove('active');
+          categoriesMenu.classList.remove('active');
+          this.isCategoryActive = !this.isCategoryActive;
+        }
+        else {
+          categoryTitle.classList.add('active');
+          categoriesMenu.classList.add('active');
+          this.isCategoryActive = !this.isCategoryActive;
+        }
+      }
+       }
     
   toggleAccordion() {
     this.accordionClick = !this.accordionClick;

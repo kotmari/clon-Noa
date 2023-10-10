@@ -2,19 +2,10 @@
    <div class="thai-market __container">
     <h2 class="thai-market__title title-page">Thai <span>Market</span></h2>
       <div class="product__categories categories-menu" [class.active]="isCategoryActive" >
-        <div class="category-title" (click)="toggleList()">Thai Satay</div>
+        <div class="category-title" (click)="toggleList()">{{categoryName}}</div>
         <ul class="categories-menu__list">
-          <li class="categories-menu__item">
-            <a [routerLink]="['/thai-market/thai-starters']" routerLinkActive="active-item">Thai Starters</a>
-          </li>
-          <li class="categories-menu__item">
-            <a [routerLink]="['/thai-market/thai-satay']"routerLinkActive="active-item">Thai Satay</a>
-          </li>
-          <li class="categories-menu__item">
-            <a [routerLink]="['/thai-market/thai-soup']" routerLinkActive="active-item">Thai Soup</a>
-          </li>
-          <li class="categories-menu__item">
-            <a [routerLink]="['/thai-market/thai-wok']" routerLinkActive="active-item">Thai WOK</a>
+          <li class="categories-menu__item" *ngFor="let category of ['thai-starters', 'thai-satay', 'thai-soup', 'thai-wok']" (click)="toggleList()">
+            <a [routerLink]="['/thai-market', category]" routerLinkActive="active-item">{{category}}</a>
           </li>
         </ul>
       </div>
@@ -23,9 +14,9 @@
           <div class="product__card card">
             <div class="block__special">
               <div class="box-mark">
-                <!-- <p class="special__category" *ngIf="product.category.path === categoryName">CULINASIA SPECIAL</p> -->
+                <p class="special__category" [ngStyle]="{'background-color': product.lebel === 'veggei' ? '#2d7d7d' : '#FF951F'}">{{product.lebel}}</p>
               </div>
-              
+  
               <div class="product_top-right">
                 <button class="fav-btn" (click)="toggleToFavorites(product)">
                   <mat-icon *ngIf="!product.isFavorite" matSuffix>favorite</mat-icon>

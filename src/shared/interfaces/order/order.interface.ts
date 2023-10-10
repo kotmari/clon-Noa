@@ -8,7 +8,7 @@ export interface IOrderRequest{
     phone:string,
     userCity: string,
     addressUser: string,
-    addressPestoran: string,
+    addressRestoran: string,
     countDevices: 0,
     devices:string,
     onlinePayment: string,

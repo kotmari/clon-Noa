@@ -1,43 +1,12 @@
 <section class="page__product product">
   <div class="product__container">
-    <div class="product__categories categories-menu" >
-      <div class="category-title" (click)="toggleList()">Thai Satay</div>
+    <div class="product__categories categories-menu" [class.active]="isCategoryActive">
+      <div class="category-title" (click)="toggleList()">{{categoryName}}</div>
       <ul class="categories-menu__list">
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/snidanky']"routerLinkActive="rout-active">Сніданки до 18.00</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/starters']" routerLinkActive="rout-active">Стартери</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/asianwok']" routerLinkActive="rout-active">asian wok</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/asian-poke']" routerLinkActive="rout-active">asian poke</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/ramen']" routerLinkActive="rout-active">Рамен</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/sushi-burgery']" routerLinkActive="rout-active">суші-бургери</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/rolls']" routerLinkActive="rout-active">роли</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/sushiset']" routerLinkActive="rout-active">Сети</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/deserty']" routerLinkActive="rout-active">десерти</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/napoyi']" routerLinkActive="rout-active">напої</a>
-        </li>
-        <li class="categories-menu__item">
-          <a [routerLink]="['/product/alkogolni-napoyi-18']" routerLinkActive="rout-active">алкогольні напої 18+</a>
-        </li>
-        <li class="categories-menu__item">
-          <a href="#" routerLinkActive="rout-active">noa shop</a>
+        <li class="categories-menu__item" *ngFor="let category of ['snidanky', 'starters', 'asianwok',
+         'asian-poke', 'ramen', 'sushi-burgery', 'rolls', 'sushiset',
+         'deserty', 'napoyi', 'alkogolni-napoyi-18', 'shop'  ]" (click)="toggleList()">
+          <a [routerLink]="['/product', category]" routerLinkActive="active-item">{{category}}</a>
         </li>
       </ul>
     </div>
@@ -72,7 +41,7 @@
         <div class="product__card card">
           <div class="block__special">
             <div class="box-mark">
-              <p class="special__category">{{product.lebel}}</p>
+              <p class="special__category" [ngStyle]="{'background-color': product.lebel === 'veggei' ? '#2d7d7d' : '#FF951F'}">{{product.lebel}}</p>
             </div>
             <div class="product_top-right">
               <button class="fav-btn" (click)="toggleToFavorites(product)">

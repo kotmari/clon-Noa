@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IOrderResponse } from 'src/shared/interfaces/order/order.interface';
 import { IProductResponse } from 'src/shared/interfaces/product/product.interface';
@@ -26,7 +26,7 @@ export class CheckoutComponent {
   public countDivaces = 1;
 
   public toggleDivace = true;
-  date = new FormControl(new Date());
+  // date = new FormControl(new Date());
   serializedDate = new FormControl(new Date().toISOString());
 
 
@@ -104,8 +104,9 @@ export class CheckoutComponent {
     this.orderForm = this.fb.group({
       orderProduct: [JSON.stringify(this.checkouts)],
       firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+      lastName: [null],
       phone: [null, Validators.required],
+      email: [null, Validators.email],
       userCity:[null, Validators.required],
       addressUser: [null, Validators.required],
       addressRestoran: [null, Validators.required],
@@ -114,9 +115,9 @@ export class CheckoutComponent {
       cash: [null, Validators.required],
       onlinePayment: [null, Validators.required],
       delivery: [this.selectedOption],
-      data: [String(new Date())],
+      data: [String(new Date()), this.serializedDate],
       status:['в процесі'],
-      call: [null, Validators.required],
+      call: [null],
     });
 
  }
@@ -125,8 +126,9 @@ export class CheckoutComponent {
 
  ordersDataUser() {
   const userExists = localStorage.getItem('currentUser');
-  const { firstName, lastName, phone, userCity, addressUser, 
-          addressPestoran, countDevices, devices, cash, onlinePayment, delivery, call } = this.orderForm.value;
+  const { firstName, lastName, phone, email, userCity, addressUser, 
+          addressPestoran, countDevices, devices, cash, onlinePayment, 
+          delivery, call } = this.orderForm.value;
 
   if (userExists) {
     // Якщо є зареєстрований користувач
@@ -138,6 +140,7 @@ export class CheckoutComponent {
       addressUser: this.user.address,
       id: this.user.uid,
       userCity,
+      email,
       addressPestoran,
       countDevices,
       devices,
@@ -153,6 +156,7 @@ export class CheckoutComponent {
       firstName,
       lastName,
       phone,
+      email,
       userCity,
       addressUser,
       addressPestoran,

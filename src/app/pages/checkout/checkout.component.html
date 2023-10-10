@@ -2,15 +2,15 @@
   <div class="checkout__container">
     <h2 class="checkout__title title-page">Оформлення замовлення</h2>
       <div class="checkout__delivery-form">
-        <form class="example-form" [formGroup]="orderForm">
+        <form class="example-form" [formGroup]="orderForm" (ngSubmit)="ordersData()">
           <div class="example-form__box1">
             <div class="form-title"><b>1.</b> Контактні дані</div>
             <div class="form-gruop">
               <mat-form-field class="example-full-width">
                 <mat-label>*Ваше ім'я</mat-label>            
                 <input type="text" matInput formControlName="lastName"
-                placeholder="*Ваше ім'я"
-              /></mat-form-field>
+                placeholder="*Ваше ім'я" required/>
+              </mat-form-field>
           <mat-form-field class="example-full-width" >
             <mat-label>Ваше прізвище</mat-label>
             <input type="text"
@@ -23,7 +23,7 @@
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Вашa ел.пошта для отримання доставки</mat-label>
-            <input type="email" matInput
+            <input type="email" matInput formControlName="email"
              placeholder="Вашa ел.пошта для отримання доставки" />
           </mat-form-field>
             </div>
@@ -37,7 +37,7 @@
           </div>
             <div class="delivery__tapy" *ngIf="selectedOption === 'Доставка кур\'єром'">
               <mat-form-field appearance="fill" class="form__select" >
-                <mat-label>Вибиріть місто</mat-label>
+                <mat-label>Вибиріть місто</mat-label >
                 <mat-select disableRipple formControlName="userCity">
                   <mat-option value="Львів">Львів</mat-option>
                   <mat-option value="Дубляни">Дубляни</mat-option>
@@ -50,7 +50,7 @@
                 <mat-form-field class="example-full-width">
                   <mat-label>Введіть вулицю  та № будинку для доставки</mat-label>
                   <input type="text" formControlName="addressUser" 
-                  matInput placeholder="*Введіть вулицю  та № будинку для доставки"/>
+                  matInput placeholder="*Введіть вулицю  та № будинку для доставки">
                 </mat-form-field>
               </div>
             </div>
@@ -69,7 +69,7 @@
                 <mat-form-field>
                   <mat-label>Виберіть дату</mat-label>
                   <input matInput [matDatepicker]="picker2"
-                         [formControl]="serializedDate" formControlName="data">
+                         [formControl]="serializedDate"/>
                   <mat-hint>MM/DD/YYYY</mat-hint>
                   <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                   <mat-datepicker #picker2></mat-datepicker>
@@ -137,7 +137,7 @@
         </div>
         <div class="checkbox-entry-wrap">
          <label class="checkbox-entry">
-          <input id="driveDelivery" #driveDelivery 
+          <input id="driveDelivery" #driveDelivery
            type="checkbox" formControlName="devices" value="Без приборів"
            (change)="toggleDivacesBlock()">
             <span>Без приборів та серветок, з любов'ю до навколишнього середовища</span>
@@ -146,7 +146,7 @@
         <div class="form-title"><b>3.</b> Інформація про оплату</div>
         <div class="checkbox-entry-wrap">
           <label class="checkbox-entry">
-          <input id="driveDelivery" type="checkbox">
+          <input id="driveDelivery" type="checkbox" formControlName="cash">
             <span>Оплата готівкою</span>
           </label>
         </div>
@@ -158,7 +158,7 @@
         </div>
         <div class="checkbox-entry-wrap">
           <label class="checkbox-entry">
-          <input id="driveDelivery" type="checkbox" value="не телефонувати" formControlName="call">
+          <input id="driveDelivery" type="checkbox"value="не телефонувати" formControlName="call">
             <span>Мені можна не телефонувати для підтвердження замовлення</span>
           </label>
         </div>
@@ -172,7 +172,7 @@
 
       <div class="basket__bottom">
         <h4 >Сума: <span class="title"> {{total}}</span> грн</h4>
-        <button class="btn btn__primary" (click)="ordersData()">
+        <button type="submit" [disabled]="orderForm.invalid" class="btn btn__primary">
           <a>оформити замовлення</a>
         </button>
       </div>

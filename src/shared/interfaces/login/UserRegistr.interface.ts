@@ -8,6 +8,6 @@ export interface IUserRegistr{
 }
 
 export interface IRegisterFull extends IUserRegistr {
-    address: string;
+    addressUser: string;
     order: []
   }

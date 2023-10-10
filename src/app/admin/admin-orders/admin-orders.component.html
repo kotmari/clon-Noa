@@ -10,17 +10,19 @@
                <th scope="col">Назва</th>
                <th scope="col">Замовник</th>
                <th scope="col">Телефон</th>
-               <th scope="col">Доставка</th>
-               <th scope="col">Адреса ресторану</th>
                <th scope="col">Адреса кліента</th>
+               <th scope="col">Доставка</th>
+               <th scope="col">Прибори</th>
+               <th scope="col">Адреса ресторану</th>
                <th scope="col">Спосіб оплати</th>
+               <th scope="col">Перетелефонувати</th>
                <th scope="col">Статус</th>
                <th scope="col">Керування</th>
              </tr>
              </thead>
              <tbody>
              <tr class="border border-black" *ngFor="let order of adminOrders">
-               <td > № {{ order.id }} <span>{{ order.data | date:' dd.MM.YYYY, hh.mm' }}</span></td>
+               <td > № {{ order.id | slice:0:5 }} <span>{{ order.data | date:' dd.MM.YYYY, hh.mm' }}</span></td>
                <td>
                  <ng-container *ngFor="let product of order.orderProduct ">
                    <span>Назва категорії:</span> {{ product.category.name}} <br>
@@ -31,16 +33,17 @@
                  </ng-container>
                </td>
                <td> {{ order.firstName }} {{ order.lastName }}</td>
-               <td> {{ order.phone}} </td>
+               <td> {{ order.phone }} </td>
+               <td> {{ order.userCity }} <br> {{ order.addressUser }} </td>
                <td >{{ order.delivery }}</td>
-               <td> <span>чи потрібно прибори: {{order.devices}}</span> <br>
-       
-                   кількість приборів:{{order.countDevices}} </td>
-               <td> {{ order.cash }} або {{ order.cash }}</td>
-               <td>
-                   {{ order.status }}
+               <td> <span>чи потрібно прибори: {{order.devices ? 'ТАК' : '-'}}</span> 
+                <br>
+                кількість приборів:{{order.countDevices}} 
                </td>
-               <td> {{ order.call }} </td>
+               <td> {{ order.addressRestoran }} </td>
+               <td> {{ order.cash ? 'готівка' : '-' }} <br> або <br> {{ order.onlinePayment ? 'карта' : '-' }}</td>
+               <td> {{ order.call ? 'ТАК' : '-'}} </td>
+               <td> {{ order.status }}</td>
                <td>
                  <button (click)="changeStatus(order)" type="button" class="btn btn-admin mb-2">
                    Змінити статус

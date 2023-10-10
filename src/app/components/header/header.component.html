@@ -22,7 +22,7 @@
                 <ng-container *ngIf="category.path != 'thai-starters' && 
                   category.path != 'thai-satay' && category.path != 'thai-soup' && category.path != 'thai-wok'">
                   <article class="menu__item">
-                    <a [routerLink]="['/product/'+category.path]">
+                    <a class="menu__link" [routerLink]="['/product/'+category.path]">
                       <div class="menu__item-img">
                         <img  [src]="category.imagePath" [alt]="category.name">
                       </div>
@@ -38,7 +38,7 @@
           <li class="inmodals">
             <div (mouseenter)="openMenu()" (mouseleave)="closeMenu()" >
               <a class="example-standalone-trigger">Thai Market</a>
-              <div *ngIf="isMenuOpen" class="modal-menu5">
+              <div *ngIf="isMenuOpen" class="modal-menu5" [ngStyle]="{'left': '-120px'}">
                 <div class="example-menu">
                   <ng-container *ngFor="let category of navCategory">
                     <ng-container *ngIf="category.path == 'thai-starters' || 
@@ -55,7 +55,9 @@
               </div>
             </div>
           </li>
-          <li class="delivery"><a [routerLink]="[ '/doctavka' ]" routerLinkActive="active">Доставка</a></li>
+          <li class="delivery">
+            <a [routerLink]="[ '/doctavka' ]" routerLinkActive="active">Доставка</a>
+          </li>
         </ul>
       </nav>
     
