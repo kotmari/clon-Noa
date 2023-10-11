@@ -89,7 +89,7 @@
           </div>
       </div>
 
-      <button href="#" class="user" data-rel="1" (click)="openUserDialog()">
+      <button *ngIf="!isLogin" class="user" data-rel="1" (click)="openUserDialog()">
         <img
           width="18"
           height="22"
@@ -97,6 +97,15 @@
           alt=""
         />
         <span>Вхід</span>
+      </button> 
+      <button *ngIf="isLogin" class="user" data-rel="1" [routerLink]="['/' + loginUrl]">
+        <img
+          width="18"
+          height="22"
+          src="../../../assets/image/user.svg"
+          alt=""
+        />
+        <span>{{ loginPage }}</span>
       </button> 
 
       <div class="burger btn-icon open-menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">

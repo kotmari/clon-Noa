@@ -25,7 +25,6 @@ export class AdminOrdersComponent {
 
   loadOrder() {
     this.orderService.getAllFirebaseOrder().subscribe((data) => {
-      console.log(data)
       data.forEach((product) => {
         if (product['orderProduct']) {
           product['orderProduct'] = JSON.parse(product['orderProduct']);

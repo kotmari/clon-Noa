@@ -41,7 +41,9 @@
         </div>
       </div>
       <div class="product-info__btns">
-        <button class="btn-small btn-small-1">Швидке замовлення</button>
+        <button class="btn-small btn-small-1" 
+        [routerLink]="['/checkout']"routerLinkActive="rout-active" 
+        (click)="addToBasket(userProductDetalis)">Швидке замовлення</button>
         <button class="btn btn-small" (click)="addToBasket(userProductDetalis)">Додати в кошик
         </button>
       </div>

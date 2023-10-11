@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ROLE } from 'src/shared/constants/constant';
 import { ICategoryResponse } from 'src/shared/interfaces/category/category.interface';
 import { IProductResponse } from 'src/shared/interfaces/product/product.interface';
 import { AccountService } from 'src/shared/services/accounts/account.service';
@@ -19,12 +20,14 @@ import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 export class HeaderComponent implements OnInit {
  
+  public navCategory: Array<ICategoryResponse>=[];
+  public baskets: Array<IProductResponse> = [];
   public selectedOption = '';
   public isModalOpen = true;
   public isAllMenuOpen!: boolean;
-  public navCategory: Array<ICategoryResponse>=[];
-
-  public baskets: Array<IProductResponse> = [];
+  public isLogin = false;
+  public loginUrl = '';
+  public loginPage = '';
   public total = 0;
   public count = 0;
   isMenuOpen = false;
@@ -46,6 +49,8 @@ export class HeaderComponent implements OnInit {
    this.loadNavCategory();
    this.loadBasket();
    this.updateBasket();
+   this.checkUserLogin();
+   this.checkUpdatesUserLogin();
    }
    
 
@@ -87,6 +92,30 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  checkUserLogin(): void{
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+    if (currentUser && currentUser.role === ROLE.ADMIN){
+      this.isLogin = true;
+      this.loginUrl = 'admin';
+      this.loginPage = 'Admin';
+    } else if (currentUser && currentUser.role === ROLE.USER) {
+      this.isLogin = true;
+      this.loginUrl = 'cabinet';
+      this.loginPage = 'Кабінет';
+    }else{
+      this.isLogin = false;
+      this.loginUrl = '';
+      this.loginPage = '';
+    }
+  }
+
+
+  checkUpdatesUserLogin(): void{
+    this.accountService.isUserLogin$.subscribe(() =>{
+      this.checkUserLogin();
+    })
+  }
+
 
   openDialogDelivery(): void {
     this.dialogService.openDialog(false, '800ms', '300ms');
@@ -100,12 +129,6 @@ export class HeaderComponent implements OnInit {
 
     });
   }
-
-  // disabletUserDialog(){
-  //   this.accountService.isUserLogin$.subscribe((loggedIn: boolean) => {
-  //     this.isLoggedIn = loggedIn;
-  //   });
-  // }
 
   userDelivery(){
     this.dialogService.selectedOption$.subscribe((option) => {

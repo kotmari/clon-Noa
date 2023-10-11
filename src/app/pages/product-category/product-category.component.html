@@ -55,7 +55,10 @@
             </a>
           </div>
           <div class="floating__btn">
-            <button class="btn btn-grey">Швидке замовлення</button>
+            <button 
+            [routerLink]="['/checkout']"routerLinkActive="rout-active" 
+            (click)="addToBasket(product)"
+            class="btn btn-grey">Швидке замовлення</button>
           </div>
           <div class="cart__content">
             <div class="card__title">

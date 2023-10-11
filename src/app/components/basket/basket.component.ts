@@ -43,8 +43,7 @@ export class BasketComponent {
       total + prod.count * prod.price,
       0
     );
-    console.log(this.total)
-  }
+   }
 
   getCountTotal(){
     this.count = this.userBaskets.reduce(
@@ -84,15 +83,5 @@ export class BasketComponent {
       this.orderService.changeBasket.next(true);
     }
   }
-
-
-  // closeModal() {
-  //   this.activeModal.dismiss();
-  // }
-
-
-
-
-
 
 }

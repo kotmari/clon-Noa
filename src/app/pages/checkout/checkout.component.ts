@@ -26,7 +26,6 @@ export class CheckoutComponent {
   public countDivaces = 1;
 
   public toggleDivace = true;
-  // date = new FormControl(new Date());
   serializedDate = new FormControl(new Date().toISOString());
 
 
@@ -41,13 +40,12 @@ export class CheckoutComponent {
   ngOnInit() {
     this.deliveryService.selectedOption$.subscribe((option) => {
       this.selectedOption = option;
-      console.log(this.selectedOption);
       this.initClientForm();
+      this.ordersDataUser();
     });
     this.loadCheckout();
     this.loadOrders();
     this.updateCheckout();
-    this.ordersDataUser();
   }
 
   loadCheckout(): void {
@@ -122,7 +120,6 @@ export class CheckoutComponent {
 
  }
 
-//  data: [String(new Date())],
 
  ordersDataUser() {
   const userExists = localStorage.getItem('currentUser');
@@ -172,10 +169,9 @@ export class CheckoutComponent {
 
 ordersData() {
   const orderData = this.orderForm.value;
-  console.log(orderData)
   this.orderService.createFirebaseOrders(orderData)
     .then(() => {
-      this.toastr.success('Orders successfully created');
+      this.toastr.success('Замовлення відправленно');
       this.updateUserOrder();
       this.clearBasket();
     })
@@ -199,6 +195,8 @@ updateUserOrder(){
   });
   }
 }
+
+
 clearBasket(): void {
   this.checkouts = [];
   localStorage.setItem('basket', JSON.stringify(this.checkouts));
@@ -219,17 +217,18 @@ toggleDivacesBlock(): void {
   }
 }
 
-// divaceCount(increment: boolean){
-//   console.log(this.countDivaces)
-//   if (increment) {
-//     this.countDivaces++;
-//   } else {
-//     if (this.countDivaces > 1) {
-//       this.countDivaces--; 
-//     }
-//   }
+get _userName() {
+  return this.orderForm.get('lastName');
+ }
+ get _phone() {
+   return this.orderForm.get('phone');
+ }
+ 
+ get isPaymentSelected(): boolean {
+  return this.orderForm.get('cash')?.value || this.orderForm.get('onlinePayment')?.value;
+}
 
-// }
+ 
 
 divaceCount(increment: boolean) {
   const countDevicesControl = this.orderForm.get('countDevices');

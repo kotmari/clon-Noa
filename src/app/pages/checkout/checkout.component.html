@@ -7,20 +7,42 @@
             <div class="form-title"><b>1.</b> Контактні дані</div>
             <div class="form-gruop">
               <mat-form-field class="example-full-width">
-                <mat-label>*Ваше ім'я</mat-label>            
+                <mat-label>Ваше ім'я</mat-label>            
                 <input type="text" matInput formControlName="lastName"
                 placeholder="*Ваше ім'я" required/>
               </mat-form-field>
-          <mat-form-field class="example-full-width" >
-            <mat-label>Ваше прізвище</mat-label>
-            <input type="text"
-            matInput placeholder="*Ваше прізвище" formControlName="firstName"/>
-          </mat-form-field>
+              <div *ngIf="_userName?.invalid && (_userName?.dirty || _userName?.touched)"
+              class="alert alert-danger">
+          
+            <div *ngIf="_userName?.errors?.['required']">
+             Дане поле не може бути пустим!
+            </div>
+              </div>
+              <mat-form-field class="example-full-width" >
+                <mat-label>Ваше прізвище</mat-label>
+                <input type="text"
+                matInput placeholder="*Ваше прізвище" formControlName="firstName"/>
+              </mat-form-field>
+            </div>
+            <div class="form-gruop2">
           <mat-form-field class="example-full-width">
             <mat-label>Номер телефону</mat-label>
             <span matPrefix>+38 &nbsp;</span>
-            <input type="tel" matInput placeholder="" formControlName="phone">
+            <input type="tel" matInput placeholder="" formControlName="phone" required pattern="^[0-9]{10}$">
           </mat-form-field>
+          </div>
+          <div *ngIf="_phone?.invalid && (_phone?.dirty || _phone?.touched)"
+          class="alert alert-danger">
+      
+        <div *ngIf="_phone?.errors?.['required']">
+         Дане поле не може бути пустим!
+        </div>
+        <div *ngIf="_phone?.errors?.['pattern']">
+          тільки для цифрових значень, 10 символів!
+         </div>
+      </div>
+
+          <div class="form-gruop2">
           <mat-form-field class="example-full-width">
             <mat-label>Вашa ел.пошта для отримання доставки</mat-label>
             <input type="email" matInput formControlName="email"
@@ -35,7 +57,7 @@
               <span>{{selectedOption}}</span>
             </label>
           </div>
-            <div class="delivery__tapy" *ngIf="selectedOption === 'Доставка кур\'єром'">
+            <div class="delivery__type" *ngIf="selectedOption === 'Доставка кур\'єром'">
               <mat-form-field appearance="fill" class="form__select" >
                 <mat-label>Вибиріть місто</mat-label >
                 <mat-select disableRipple formControlName="userCity">
@@ -54,8 +76,8 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="delivery__tepy" *ngIf="selectedOption === 'Самовивіз'">
-              <div class="form-gruop">
+            <div class="delivery__type" *ngIf="selectedOption === 'Самовивіз'">
+              <div class="delivery__type">
                 <mat-form-field appearance="fill" class="form__address" >
                   <mat-label>Ресторан за адресою </mat-label>
                   <mat-select disableRipple formControlName="addressRestoran">
@@ -83,7 +105,7 @@
                   </mat-select>
                 </mat-form-field>
               </div>
-              <div class="form-gruop">
+              <div class="form-gruop2">
                 <div class="delivery-block__map">
                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8654.867169146031!2d24.022611981371185!3d49.84043939605851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add6c2ce99f0f%3A0xb96087125fa072f4!2z0LLRg9C70LjRhtGPINCh0YLQsNGA0L7RlNCy0YDQtdC50YHRjNC60LAsIDQsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgNzkwMDA!5e0!3m2!1suk!2sua!4v1694953496830!5m2!1suk!2sua" 
                   width="100%" 
@@ -121,7 +143,7 @@
                       <div class="icon" (click)="deleteCheckoutProduct(checkout)">
                         <button type="button" class="btn-close" aria-label="Close"></button>
                       </div>
-                      <h4 >{{ checkout.price * checkout.count }}<span> грн</span></h4>
+                      <h4 ><b>{{ checkout.price * checkout.count }}</b><span> грн</span></h4>
                   </div>
                </div>
           </div>
@@ -146,19 +168,22 @@
         <div class="form-title"><b>3.</b> Інформація про оплату</div>
         <div class="checkbox-entry-wrap">
           <label class="checkbox-entry">
-          <input id="driveDelivery" type="checkbox" formControlName="cash">
+          <input type="checkbox" formControlName="cash" required>
             <span>Оплата готівкою</span>
           </label>
         </div>
         <div class="checkbox-entry-wrap" *ngIf="selectedOption === 'Доставка кур\'єром'">
           <label class="checkbox-entry">
-          <input id="driveDelivery" type="checkbox" value="Online payment" formControlName="onlinePayment">
+          <input type="checkbox" value="Online payment" formControlName="onlinePayment" required>
             <span>Online payment LiqPay</span>
           </label>
         </div>
+        <div *ngIf="!isPaymentSelected" class="alert alert-danger">
+          At least one checkbox is required.
+        </div>
         <div class="checkbox-entry-wrap">
           <label class="checkbox-entry">
-          <input id="driveDelivery" type="checkbox"value="не телефонувати" formControlName="call">
+          <input type="checkbox"value="не телефонувати" formControlName="call">
             <span>Мені можна не телефонувати для підтвердження замовлення</span>
           </label>
         </div>
@@ -171,9 +196,12 @@
           
 
       <div class="basket__bottom">
-        <h4 >Сума: <span class="title"> {{total}}</span> грн</h4>
-        <button type="submit" [disabled]="orderForm.invalid" class="btn btn__primary">
-          <a>оформити замовлення</a>
+        <div class="price-box">
+          <h3><b>Сума: </b></h3>
+          <span class="title"> {{total}}  грн</span>
+        </div>
+        <button type="submit" class="btn btn__primary">
+          <a [routerLink]="['']" routerLinkActive="router-link-active" >оформити замовлення</a>
         </button>
       </div>
       </div>
