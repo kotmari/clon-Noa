@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 import { FavoritesComponent } from './favorites.component';
 
@@ -8,7 +10,11 @@ describe('FavoritesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FavoritesComponent]
+      declarations: [FavoritesComponent],
+      imports:[HttpClientTestingModule],
+      providers:[
+        { provide: Firestore, useValue: {}}
+      ]
     });
     fixture = TestBed.createComponent(FavoritesComponent);
     component = fixture.componentInstance;

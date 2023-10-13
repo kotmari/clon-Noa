@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -10,6 +11,9 @@ describe('ProductService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
+      ],
+      providers:[
+        { provide: Firestore, useValue: {}},
       ]
     });
 

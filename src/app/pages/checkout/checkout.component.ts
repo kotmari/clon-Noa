@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IOrderResponse } from 'src/shared/interfaces/order/order.interface';
 import { IProductResponse } from 'src/shared/interfaces/product/product.interface';
@@ -34,17 +35,19 @@ export class CheckoutComponent {
     private orderService: OrderService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private deliveryService: DialogDeliveryService
+    private deliveryService: DialogDeliveryService,
+    private router: Router,
    ){}
 
   ngOnInit() {
     this.deliveryService.selectedOption$.subscribe((option) => {
       this.selectedOption = option;
       this.initClientForm();
-      this.ordersDataUser();
+     
     });
     this.loadCheckout();
     this.loadOrders();
+    this.ordersDataUser();
     this.updateCheckout();
   }
 
@@ -174,6 +177,7 @@ ordersData() {
       this.toastr.success('Замовлення відправленно');
       this.updateUserOrder();
       this.clearBasket();
+           
     })
     .catch((error) => {
       console.log(error)
@@ -202,8 +206,9 @@ clearBasket(): void {
   localStorage.setItem('basket', JSON.stringify(this.checkouts));
   this.updateCheckout();
   this.orderService.changeBasket.next(true);
-  this.orderForm.reset();
+  this.orderForm.reset({}, { emitEvent: false });
   localStorage.removeItem('basket');
+  this.router.navigate(['']);
 
 }
 

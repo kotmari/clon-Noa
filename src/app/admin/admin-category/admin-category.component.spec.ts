@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Firestore } from '@angular/fire/firestore';
+import { CategoryService } from 'src/shared/services/category/category.service';
 
 import { AdminCategoryComponent } from './admin-category.component';
 
@@ -8,7 +11,13 @@ describe('AdminCategoryComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminCategoryComponent]
+      declarations: [AdminCategoryComponent],
+      imports:[
+        HttpClientTestingModule
+      ],
+      providers:[
+          { provide: Firestore, useValue: {}}
+       ]
     });
     fixture = TestBed.createComponent(AdminCategoryComponent);
     component = fixture.componentInstance;

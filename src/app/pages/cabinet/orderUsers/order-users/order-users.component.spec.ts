@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 import { OrderUsersComponent } from './order-users.component';
 
@@ -8,7 +10,9 @@ describe('OrderUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrderUsersComponent ]
+      declarations: [ OrderUsersComponent ],
+      imports:[ HttpClientTestingModule ],
+      providers: [ { provide: Firestore, useValue: {}}]
     })
     .compileComponents();
 

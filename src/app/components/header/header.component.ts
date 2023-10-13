@@ -136,20 +136,29 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  openMenuAll() {
-    this.isAllMenuOpen = true;
+  toggleMenu(menu: string) {
+    if (menu === 'all') {
+      this.isAllMenuOpen = !this.isAllMenuOpen;
+      if (!this.isAllMenuOpen) {
+        this.closeMenuWithDelay('all');
+      }
+    } else {
+      this.isMenuOpen = !this.isMenuOpen;
+      if (!this.isMenuOpen) {
+        this.closeMenuWithDelay('regular');
+      }
+    }
   }
+  closeMenuWithDelay(menu: string) {
+    setTimeout(() => {
+      if (menu === 'all') {
+        this.isAllMenuOpen = false;
+      } else {
+        this.isMenuOpen = false;
+      }
+    }, 250);
+  }
+  
 
-  closeMenuAll() {
-    this.isAllMenuOpen = false;
-  }
-
-  openMenu() {
-    this.isMenuOpen = true;
-  }
-
-  closeMenu() {
-    this.isMenuOpen = false;
-  }
 
 }

@@ -4,6 +4,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { getAuth, reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 
 @Component({

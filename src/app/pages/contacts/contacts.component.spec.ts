@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactsComponent } from './contacts.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
@@ -8,7 +12,10 @@ describe('ContactsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContactsComponent]
+      declarations: [ContactsComponent],
+      imports: [MatFormFieldModule, 
+        RouterTestingModule,
+       ],
     });
     fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;

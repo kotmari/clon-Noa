@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 import { AdminOrdersComponent } from './admin-orders.component';
 
@@ -8,7 +10,13 @@ describe('AdminOrdersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminOrdersComponent]
+      declarations: [AdminOrdersComponent],
+      imports: [
+        HttpClientTestingModule
+      ],
+      providers:[
+        { provide: Firestore, useValue: {}}
+      ]
     });
     fixture = TestBed.createComponent(AdminOrdersComponent);
     component = fixture.componentInstance;

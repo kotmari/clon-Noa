@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DoctavkaComponent } from './doctavka.component';
 
@@ -8,7 +9,8 @@ describe('DoctavkaComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DoctavkaComponent]
+      declarations: [DoctavkaComponent],
+      imports: [RouterTestingModule]
     });
     fixture = TestBed.createComponent(DoctavkaComponent);
     component = fixture.componentInstance;

@@ -1,11 +1,22 @@
 import { TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from '../app/components/header/header.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    imports: [RouterTestingModule, HttpClientTestingModule],
+    declarations: [AppComponent,
+      HeaderComponent ],
+    providers:[
+      { provide: MatDialogRef, useValue: {} },
+      { provide: MatDialog, useValue: {} },
+      { provide: Firestore, useValue: {} },
+
+    ]
   }));
 
   it('should create the app', () => {

@@ -33,8 +33,7 @@ export class OrderUsersComponent {
       const arr = data['orders'];
       data['orders'] = JSON.parse(arr);
        this.ordersHistory = data['orders'];
-       console.log(this.ordersHistory)
-      })
+       })
     }
   }
 

@@ -13,7 +13,7 @@ import { ProductService } from 'src/shared/services/product/product.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy{
+export class HomeComponent implements OnInit{
   message = new FormControl('Info about the action');
 
   public userHomeProducts:Array<IProductResponse>=[];
@@ -31,11 +31,6 @@ export class HomeComponent implements OnInit, OnDestroy{
     private router: Router,
 
   ){
-    this.eventSubscription = this.router.events.subscribe((event)=>{
-      if(event instanceof NavigationEnd){
-        this.loadHomeProduct();
-      }
-    });
   }
 
   ngOnInit(): void {
@@ -47,21 +42,6 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.categoryService.getAllFirebaseCategories().subscribe(data => {
       this.userCategories = data as ICategoryResponse [];
     })
-  }
-
-
-  loadHomeProduct(): void{
-    this.categoryName = this.activatedRoute.snapshot.paramMap.get('category') as string;
-    this.productService.getAllByCategoryFirebase(this.categoryName).then((data)=>{
-      console.log(data)
-      this.userHomeProducts = data as IProductResponse[];
-      console.log(this.userHomeProducts)
-    })
-  }
- 
-  
-  ngOnDestroy(): void {
-    this.eventSubscription.unsubscribe();
   }
 
   toggleAccordion() {

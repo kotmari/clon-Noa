@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CabinetComponent } from './cabinet.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 describe('CabinetComponent', () => {
   let component: CabinetComponent;
@@ -12,6 +13,9 @@ describe('CabinetComponent', () => {
       declarations: [CabinetComponent],
       imports: [
         HttpClientTestingModule,
+      ],
+      providers:[
+        { provide: Firestore, useValue: {}}
       ]
     });
     fixture = TestBed.createComponent(CabinetComponent);

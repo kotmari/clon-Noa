@@ -14,7 +14,7 @@
       <nav>
         <ul>
           <li class="inmodals">
-          <div (mouseenter)="openMenuAll()" (mouseleave)="closeMenuAll()" >
+            <div (mouseenter)="toggleMenu('all')" (mouseleave)="toggleMenu('all')" >
           <a  class="example-standalone-trigger">Меню</a>
           <div *ngIf="isAllMenuOpen" class="modal-menu5 menu__container">
             <div class="example-menu">
@@ -36,9 +36,9 @@
         </div>
         </li>
           <li class="inmodals">
-            <div (mouseenter)="openMenu()" (mouseleave)="closeMenu()" >
+           <div (mouseenter)="toggleMenu('regular')" (mouseleave)="toggleMenu('regular')">
               <a class="example-standalone-trigger">Thai Market</a>
-              <div *ngIf="isMenuOpen" class="modal-menu5" [ngStyle]="{'left': '-120px'}">
+              <div *ngIf="isMenuOpen" class="modal-menu5">
                 <div class="example-menu">
                   <ng-container *ngFor="let category of navCategory">
                     <ng-container *ngIf="category.path == 'thai-starters' || 
@@ -56,7 +56,7 @@
             </div>
           </li>
           <li class="delivery">
-            <a [routerLink]="[ '/doctavka' ]" routerLinkActive="active">Доставка</a>
+            <a class="example-standalone-trigger" [routerLink]="[ '/doctavka' ]" routerLinkActive="active">Доставка</a>
           </li>
         </ul>
       </nav>

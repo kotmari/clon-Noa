@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 import { BasketComponent } from './basket.component';
 
@@ -8,7 +10,13 @@ describe('BasketComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BasketComponent]
+      declarations: [BasketComponent],
+      imports:[
+        HttpClientTestingModule
+      ],
+      providers:[
+        { provide: Firestore, useValue: {}}
+      ]
     });
     fixture = TestBed.createComponent(BasketComponent);
     component = fixture.componentInstance;
